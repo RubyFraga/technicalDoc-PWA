@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="title">Technical Documentation Page</title>
+  </head>
+<body>
+  <header>
+    <nav id="navbar"> <!-- Side navigation US#8 -->
+      <ul>
+        <li><h1>Progressive Web Apps (PWAs) Technical Page</h1></li>
+        <li><a href="#PWA" class="nav-link">What is a PWA? </a></li>
+        <li><a href="#PWA_advantages" class="nav-link">PWA Advantages </a></li>
+        <li><a href="#PWA_structure" class="nav-link">PWA Architecture</a></li>
+        <li><a href="#appShell" class="nav-link">App Shell + Service Workers</a></li>
+        <li><a href="#PWA_summary" class="nav-link">PWA Summary</a></li>
+        <li><a href="#streamsAPI" class="nav-link">Streams API</a></li>
+        <li><a href="#PWA_example" class="nav-link">js13kgames PWA Example</a></li>
+        <li><a href="#references" class="nav-link">References</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- End of navbar -->
+  <div id="main-doc"> <!-- US #1 -->
+    <section class="main-section" id="PWA"><!-- US#2, MS #1 -->
+      <h1>Introduction</h1> <!-- US#3 Topic #1 -->
+      <p>"PWA" isn't the official term, but a shorthand concept initially created by Google for the concept of an adaptable app. Progressive Web Apps do not depend on a single API. PWAs are web applications that use browser APIs with various technologies that allow websites to appear like native mobile applications or traditional applications, seaming both web and app-like features into one. The web application attempts to combine features that are offered by most modern browsers with the benefits of a mobile app-like experience, with the help of specific technologies and standard patterns. While PWAs are functional, they are not a standard for web development.<br><br> Web apps are simply more discoverable than native apps; it's faster and easier to share a website link and visit than it is to install an application. Online traffic for web apps, too, are found to be more popularly dense simply by the convenience of sending a link. <br><br>While PWAs are simpler and easily shareable, native apps are naturally suited for mobile operating systems since they're integrated with the app's operating system, therefore offering a better seamless experience for users. Also instead of navigating through a browser when WiFi appears less visible, a native app can be set to work offline so that users can easily access their apps without the internet. Although native apps have their offline advantages, PWAs simply allow users the ability to enjoy the same advantages.<br><br>
+        In order to consider a Web App as a PWA, the app should have the features:</p>
+        <ul> <!-- US#7, list 1-->
+          <li><b>A secure context (HTTPS):</b> A window (or Worker) where the content has been retrieved securely via HTTPS/TLS. The essential goal of secure contexts is for the prevention of <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">hijack hackers</a> from accessing or compromising the sceurity of the web browser. </li>
+          <li><b>Service Workers:</b> A service worker is a script that allows control over a web browser's caching and network request. Service workers allow web developers to create fast and reliable websites, including offline experiences. </li> 
+          <li><b>Manifest File:</b> A file that contains metadata for a group of accompanying files that belongs to a set (or coherent) unit. A manifest file is a file you should already have from your PC or Android system . It provides important information about your system (via PC or Android system) in order to run your app's code. The file provides information such as: the app's name, the start URL, icons, and other essential information in order to transform the website into an app-like format.</li> 
+      </ul>
+    </section><br>
+    <hr><!-- US#5 -->
+    <section class="main-section" id="PWA_advantages">
+      <h2>PWA Advantages</h2>
+      <ol>
+        <li><b>Network independent:</b> Progressive Web Apps are able to work both with a poor internet connection or offline.</li>
+        <li><b>Progressive enhancement support:</b> The application should be usable on basic level (or older, less capable) browsers and on modern fully-functional browsers. Developers, on the other hand, should consider the capacity of different browsers and their limitations with certain PWA features and technologies.</li>
+        <li><b>Discoverable:</b> The content should be discoverable through search engines.</li>
+        <li><b>Installable:</b> The website shoud easily be shareable through an app via URL, without needing to install an app.</li>
+        <li><b>Responsive:</b> Usable on various devices that have different UIs that also use different technologies (i.e. casting on TVs, laptops, mobile, desktop, tablet, etc.)</li>
+        <li><b>Linkable:</b> The ability to share a website URL without installing an app via app store.</li>
+        <li><b>Safe:</b> Secure connectivity from the server, the app, and the user from other parties gaining access to your sensitive data.</li>
+        <li><b>Re-engageable:</b> By using new technologies such as Service Workers and API's (i.e. Web Push API, Notifications API, etc.), websites can continue to re-engage users even while their phones remain idle. </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#Advantages_of_web_applications"><i>Find out more...</i></a></li>
+      </ol> <!-- US#5 -->
+    </section><br>
+    <hr>
+    <section class="main-section" id="PWA_structure"><!-- US#2, MS #2 -->
+      <h1>PWA Structure</h1> <!-- US#3 Topic #2-->
+      <p>Using <a href="https://mdn.github.io/pwa-examples/js13kpwa/">js13kgames</a> as an example, we will be able to analyze the website’s application as I explain the structure of a Progressive Web App - why it’s built using a PWA structure, and the benefits of using a PWA structure.</p><br><hr> <!-- US#5 -->
+      <h2>Architecture of an App</h2>
+      <p>There are two primary approaches to creating a website:</p> <!-- US#5 -->
+      <ol> <!-- US#7, list 2-->
+        <li><b>Server-Side Rendering (SSR):</b> Server-Side Rendering means that a website's HTML document is downloaded and converted in the server in order to display its information onto the website. SSR is the most common website strategy for displaying information to the user (i.e. static pages, technical documentation pages, or main landing pages) and used to be the only way for displaying your website. Although the initial download is fast, SSR website's overall time performance suffers while navigating between pages; roundtrips back to the server is required to re-render the latest HTML content from scratch, unless it is not otherwise cached. <br><br>The conversion begins with a request millisecond request from the user's browser to the server, which depends on the approval of a multitude of factors:</li>
+          <ul>
+            <li>User's internet speed</li>
+            <li>Location of the server</li>
+            <li>The website's traffic (or qty of users trying to gain access to the website)</li>
+            <li>How optimized the website was created to be</li>
+            <li>etc.</li>
+          </ul><br>          
+        <li><b>Client-Side Rendering (CSR):</b> Client-side rendering are browser-rendered websites that provide up-to-date content using JavaScript, rather than relying on the HTML document alone. CSR websites creates each route directly in the browser, making accessing and navigating through different pages with ease. Although accessible, the website's initial visit is a slow process to begin with because of how much content that must be downloaded through the browser. </li>
+      </ol>
+        <p>Both SSR and CSR approaches can be combined for best results - where the server quickly renders the website (SSR), chaching its' contents, then render updated content as needed (CSR). When you're able to utilize both rendering techniques, the website can quickly load using the server, and smoothly navigate between pages as the browser continues to re-render.<br><br> The <b>"app shell"</b> concept is a combination of server-side rendering, client-side rendering, and the "offline first" methodology. The "offline first" method should ensure an app to be both reliable and faster for the user beause it's developed to function as well as it does online offline. Streams API, for example, is another method that allows JavaScript to access data through the network and process that data as desired (more info. below).</p>
+    </section><br>
+  <hr>
+    <section class="main-section" id="appShell"><!-- US#2, MS #3 -->
+      <h1>App Shell</h1> <!-- US#3 -->
+      <p>The App Shell's main concept is loading the most minimal user interface (UI) when the user visits the website for the first time, so that the user's device caches the UI for offline availability onto the device. In computing, a <i>cache</i> is a hardware or software component used by the Central Processing Unit (CPU) that accesses data from frequently used main memory locations and stores them for faster retrieval. Think of it like a faster memory bank.<br><br> Once the UI is loaded, and when the website is revisted from the same device, the UI imediantely loads from the cache with any new or updated content from the server. This makes it so that the user can visily see "something" instantly with the sensation of a fast website.<br><br> <b>Service workers</b> can control both a server's request(s) and what a cache retrieves. Service workers essentially act as the middle man between web applications, the HTTPS browser, and available network. They are Javascript files that are background-operated threads of a web app, intercepting network requests, retrieving resources via fetching, then caching that information to be provided offline for improved performance. Side note, Service Workers can handle a lot more than providing offline capabilities: perform heavy calculations, handle website notifications, and more. They are so powerful - being able to control network requests and customize their responses via the cached info. - that they can only be executed over secure HTTPS. More information about Service Workers can be found <a href="https://developers.google.com/web/ilt/pwa/introduction-to-service-worker">here</a>... <br><br> The beauty of using the App Shell architecture are the benefits from using all PWA features: quickly caching the website's structure while imrpoving performance with up-to-date content. Progressive enhancement wonderfully emphasizes the core of the webpage always, the content. After the foundation is set, the developer may add layers of features or techniques up to the browser's limitations.<br><br> The website should feel like an app, but with instant performance and user interaction. 
+    </section><br>
+  <hr>
+      <section class="main-section" id="PWA_summary">
+      <h2>In summary, PWA...</h2>
+      <p>When designing a website, remember the PWA advantages through the App Shell approach, and that it should be:</p>
+      <ol>
+        <li><b>Linkable:</b> Just like any website, links should be clickable and shareable, unlike native apps, though it should behave just as smoothly.</li>
+        <li><b>Progressive:</b> Until you begin with the essentials of a basic bare-boned website, then the developer is allowed to slowly layer the website with other features. <i>Keep note that such features must be browser compliant, should the browser not support such feature(s), the developer must fix such problems or evoke it completely</i>. A website shoud be functional for anyone with the link offline, just as it is online.</li>
+        <li><b>Responsive:</b> It's important to build a website that's able to conform onto various screen sizes, pixel or viewports densities, while using responsive web design technologies (i.e. Flexbox, CSS grid, CSS media queries, viewport meta tag, etc.). </li>
+        </ol>
+  </section><br>
+        <hr>
+    <section class="main-section" id="streamsAPI"><!-- US#2, MS #4 -->
+      <h1>A Different Concept: Streams API (streams)</h1> <!-- US#3 -->
+      <p>Apart from server-side or client-side rendering, rending can be processed also with Streams API. With the help of service workers, streams can improve the way we parse content.<br><br> Streams allow JavaScript to programmatically access streams of raw data received over the network, process them via JavaScript bit by bit, and are limited or customized data availability by the developer. Rather than waiting for an entire video blob or audio string to download, you can play a video (or render data) as soon as it's being processed. This method breaks large data resources into small chunks, which is the only relevant to previous processes, having to download the whole file (i.e. video or text), without waiting for the entirety to be a suitable format then received client-side. It is by fr the fastest way of providing content performance.</p> <!-- US#5 -->
+      <h2>Other streams advantages:</h2> <!-- US#5 -->
+      <ul> <!-- US#7, list 4-->
+        <li>Detect the beginning and the end of data streams</li>
+        <li>Chain with other streams together</li>
+        <li>Check for stream errors as desired</li>
+        <li>Accutely control, react, or edit a stream's speed according to its' rendering</li>
+      </ul>
+      </section><br>
+        <hr>
+    <section class="main-section" id="PWA_example"><!-- US#2, MS #5 -->
+      <h1>Our Example: js13kgames.com</h1> <!-- US#3 -->
+      <p>Below is the website structure of <a href="https://mdn.github.io/pwa-examples/js13kpwa/">js13kgames</a>, a website dedicated to a list of JavaScript games that were submitted to the <a href="https://js13kgames.com/webxr">A-Frame</a> category and competed in the <a href="http://2017.js13kgames.com/">js13kgames 2017</a> competition.</p><!-- US#5 -->
+      <h3>The Folder Structure</h3>
+      <p>js13kgames's <a href="https://github.com/mdn/pwa-examples/tree/master/js13kpwa">folder structure</a> looks like this:</p> <!-- US#5 -->
+      <ul> <!-- US#7, list 5-->
+        <li><a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/app.js">app.js</a></li>
+        <li>data (folder)</li>
+          <ul>
+            <li><a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/data/games.js">games.js</a></li>
+            <li>img (folder)</li>
+        </ul>
+        <li>favicon.ico</li>
+        <li>fonts (folder)</li>
+        <li>icons (folder)</li>
+        <li>img (folder)</li>
+          <ul>
+            <li>bg.png</li>
+            <li>js13kgames.png</li>
+        </ul>
+        <li><a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/index.html">index.html</a></li>
+        <li>js13kpwa.webmanifest</li>
+        <li><a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/style.css">style.css</a></li>
+        <li><a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/sw.js">sw.js</a></li>
+      </ul>
+      <h3>The HTML</h3> <!-- START of HTML CODE -->  
+      <p>The <code>head</code> section contains the basic information: title, description, web manifest, JS file for games content, and app.js (where the JavaScript application is initialized). The <code>body</code> is split into the <code>header</code>, the <code>main</code> page, and <code>footer</code>.<br><br> The app's only job is to list all the A-Frame entries from the js13kGames 2017 competition. The point of js13kGames's website is to have a very ordinary page so that the audience can focus on the implementation of actual PWA features.</p><br>
+      <textarea><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>js13kGames A-Frame entries</title>
+  <meta name="description" content="A list of A-Frame entries submitted to the js13kGames 2017 competition, used as an example for the MDN articles about Progressive Web Apps.">
+   <meta name="author" content="end3r">
+   <meta name="theme-color" content="#B12A34">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta property="og:image" content="icons/icon-512.png">
+   <link rel="shortcut icon" href="favicon.ico">
+   <link rel="stylesheet" href="style.css">
+   <link rel="manifest" href="js13kpwa.webmanifest">
+   <script src="data/games.js" defer></script>
+   <script src="app.js" defer></script>
+</head>
+<body>
+<header>
+  <p><a class="logo" href="http://js13kgames.com"><img src="img/js13kgames.png" alt="js13kGames"></a></p>
+</header>
+<main>
+  <h1>js13kGames A-Frame entries</h1>
+  <p class="descripton">List of games submitted to the <a href="http://js13kgames.com/aframe">A-Frame category</a> in the <a href="http://2017.js13kgames.com">js13kGames 2017</a> competition. You can <a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa">fork js13kPWWA on Github</a> to check its source code.</p>
+  <button id="notifications">Request dummy notifications</button>
+  <section id="content">
+    // Content inserted in here
+  </section>
+  </main>
+  <footer>
+    <p>© js13kGames 2012-2018, created and maintained by <a href="http://end3r.com">Andrzej Mazur</a> from <a href="http://enclavegames.com">Enclave Games</a>.</p>
+</footer>
+</body>
+</html>     
+        </textarea>
+        </section><!-- US#6, END of HTML code -->
+            <h3>The CSS</h3>   
+            <p>The CSS was also designed to be as plain as possible. It uses <code>@font-face</code> to load and use a custom font, and applies some styling to the HTML elements. The overall approach is to have the design look good on both on desktop and mobile devices ( which would have a responsive web design approach). <br><br>Link to <a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/style.css">style.css</a></p>
+            <h3>The main appplication: JavaScript</h3>
+            <p>The app.js file does a few things we'll look into closely in the next articles. Here are the steps below:</p> 
+      <ol>
+        <li>The app.js file generates the content based on the template shown below.</li>
+        <li>It registers a service worker.</li>
+        <li>If the button is clicked, it blocks requests permission for notifications.</li>
+        <li>The last block of code below creates notifications that display randomly-selected items from the games list.</li>
+      </ol>
+      <h4>Template from app.js</h4>
+      <textarea>
+var template = "<article>\n\
+  <img src='data/img/SLUG.jpg' alt='NAME'>\n\
+  <h4>#POS. NAME</h4>\n\
+  <ul>\n\
+  <li><span>Author:</span> <strong>AUTHOR</strong></li>\n\
+  <li><span>Twitter:</span> <a href='https://twitter.com/TWITTER'>@TWITTER</a></li>\n\
+  <li><span>Website:</span> <a href='http://WEBSITE/'>WEBSITE</a></li>\n\
+  <li><span>GitHub:</span> <a href='https://GITHUB'>GITHUB</a></li>\n\
+  <li><span>More:</span> <a href='http://js13kgames.com/entries/SLUG'>js13kgames.com/entries/SLUG</a></li>\n\
+  </ul>\n\
+</article>";
+var content = '';
+for(var i=0; i<games.length; i++) {
+  var entry = template.replace(/POS/g,(i+1))
+    .replace(/SLUG/g,games[i].slug)
+    .replace(/NAME/g,games[i].name)
+    .replace(/AUTHOR/g,games[i].author)
+    .replace(/TWITTER/g,games[i].twitter)
+    .replace(/WEBSITE/g,games[i].website)
+    .replace(/GITHUB/g,games[i].github);
+  entry = entry.replace('<a href=\'http:///\'></a>','-');
+  content += entry;
+};
+document.getElementById('content').innerHTML = content;
+            </textarea>
+              <h4>Service Worker</h4>
+              <textarea>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/pwa-examples/js13kpwa/sw.js');
+};
+              </textarea>
+              <h4>Button (requests permission)</h4>
+              <textarea>
+var button = document.getElementById("notifications");
+button.addEventListener('click', function(e) {
+  Notification.requestPermission().then(function(result) {
+    if(result === 'granted') {
+      randomNotification();
+    }
+   });
+});
+              </textarea>
+              <h4>Display Notification</h4>
+              <textarea>
+function randomNotification() {
+  var randomItem = Math.floor(Math.random()*games.length);
+  var notifTitle = games[randomItem].name;
+  var notifBody = 'Created by '+games[randomItem].author+'.';
+  var notifImg = 'data/img/'+games[randomItem].slug+'.jpg';
+  var options = {
+    body: notifBody,
+    icon: notifImg
+  }
+  var notif = new Notification(notifTitle, options);
+  setTimeout(randomNotification, 30000);
+}
+              </textarea>
+              <h2>The Service Worker</h2>
+              <p>The last file we'll quickly examine is the sw.js file, the service worker.</p>
+              <ol>
+                <li>The file first imports data from the file games.js.</li>
+                <li>Next, the service worker creates a list of all the files to be cached, both from the app shell and the content.</li>
+                <li>The <code>addEventListener</code> installs the service worker, which then actually caches all the files contained in the above list that were created.</li>
+                <li>Lastly, the service worker fetches content from the cache if content is available, which provides for offline functionality.</li>
+              </ol>
+        <h4>Service worker imports data from games.js</h4>
+        <textarea>
+self.importScripts('data/games.js');</textarea>
+        <h4>Service worker creates a list</h4>
+        <textarea>
+var cacheName = 'js13kPWA-v1';
+var appShellFiles = [
+  '/pwa-examples/js13kpwa/',
+  '/pwa-examples/js13kpwa/index.html',
+  '/pwa-examples/js13kpwa/app.js',
+  '/pwa-examples/js13kpwa/style.css',
+  '/pwa-examples/js13kpwa/fonts/graduate.eot',
+  '/pwa-examples/js13kpwa/fonts/graduate.ttf',
+  '/pwa-examples/js13kpwa/fonts/graduate.woff',
+  '/pwa-examples/js13kpwa/favicon.ico',
+  '/pwa-examples/js13kpwa/img/js13kgames.png',
+  '/pwa-examples/js13kpwa/img/bg.png',
+  '/pwa-examples/js13kpwa/icons/icon-32.png',
+  '/pwa-examples/js13kpwa/icons/icon-64.png',
+  '/pwa-examples/js13kpwa/icons/icon-96.png',
+  '/pwa-examples/js13kpwa/icons/icon-128.png',
+  '/pwa-examples/js13kpwa/icons/icon-168.png',
+  '/pwa-examples/js13kpwa/icons/icon-192.png',
+  '/pwa-examples/js13kpwa/icons/icon-256.png',
+  '/pwa-examples/js13kpwa/icons/icon-512.png'
+];
+var gamesImages = [];
+for(var i=0; i<games.length; i++) {
+  gamesImages.push('data/img/'+games[i].slug+'.jpg');
+}
+var contentToCache = appShellFiles.concat(gamesImages);
+                             </textarea>
+          <h4>Cache files from list above via Service worker</h4>
+          <textarea>
+self.addEventListener('install', function(e) {
+  console.log('[Service Worker] Install');
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      console.log('[Service Worker] Caching all: app shell and content');
+      return cache.addAll(contentToCache);
+    })
+  );
+}); 
+          </textarea>
+          <h4>Fetch data for offline availability</h4>
+          <textarea>
+self.addEventListener('fetch', function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(r) {
+      console.log('[Service Worker] Fetching resource: '+e.request.url);
+      return r || fetch(e.request).then(function(response) {
+        return caches.open(cacheName).then(function(cache) {
+          console.log('[Service Worker] Caching new resource: '+e.request.url);
+          cache.put(e.request, response.clone());
+          return response;
+        });
+      });
+    })
+  );
+}); 
+          </textarea>
+          <h2>The JavaScript data</h2>
+          <p>The games data is present in the data folder in a form of a JavaScript object (<a href="https://github.com/mdn/pwa-examples/blob/master/js13kpwa/data/games.js">games.js</a>) below. <b>JavaScript objects</b> are containers, or a collection, for associated named values (or "key"), which are formally called <i>properties</i>. If the property is otherwise written as a function instead of a key, the property is now known as a <i>method</i>. More about JavaScript objects on <a href="https://www.w3schools.com/js/js_object_definition.asp">w3schools</a> or on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">MDB web docs</a>.<br><br> Every entry have their own individual image in the <code>data/img</code> folder. This is js13kgames' content section JavaScript.</p>
+          <textarea>var games = [
+    {
+        slug: 'lost-in-cyberspace',
+        name: 'Lost in Cyberspace',
+        author: 'Zosia and Bartek',
+        twitter: 'bartaz',
+        website: '',
+        github: 'github.com/bartaz/lost-in-cyberspace'
+    },
+    {
+        slug: 'vernissage',
+        name: 'Vernissage',
+        author: 'Platane',
+        twitter: 'platane_',
+        website: 'github.com/Platane',
+        github: 'github.com/Platane/js13k-2017'
+    },
+// ...
+    {
+        slug: 'emma-3d',
+        name: 'Emma-3D',
+        author: 'Prateek Roushan',
+        twitter: '',
+        website: '',
+        github: 'github.com/coderprateek/Emma-3D'
+    }
+];
+          </textarea><br><br>
+          <hr>
+          <section class="main-section" id="references">
+            <h1>References</h1>
+            <p>All documentation on this page are taken from:</p>
+            <ul>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction#Advantages_of_web_applications">MDN: Introduction to Progressive Web Apps</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/App_structure">MDN: Progressive Web App Structure</a></li>
+              <li><a href="https://developers.google.com/web/ilt/pwa/introduction-to-service-worker">web.dev: Introduction to Service Workers</a></li>
+            </ul>
+            <p><a href="#navbar" id="pageUp">PAGE UP</a></p>
+            <hr>
+            <footer>
+              <p>Coded by R.J.Fraga 06-15-2020</p>
+            </footer>
+          </section>
+          </div>
+        </body>
+    </html>
