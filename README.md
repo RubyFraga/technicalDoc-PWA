@@ -1,2 +1,2 @@
-# techDoc-PWA.github.io
+# technicalDoc-PWA.github.io
 Technical documentation website about Progressive Web Apps (PWA)
